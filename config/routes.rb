@@ -18,6 +18,21 @@ Rails.application.routes.draw do
     resources :categories, only: [:index, :new, :create]
   end
 
+  # resources :users, only: [:index, :new, :create, :show, :update, :destroy]
+  #
+  # resource  :sessions, only: [:index, :new, :create, :show, :update, :destroy] do
+  #   post    :new
+  # end
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+  post '/signup' => 'users#create'
+
+
   # namespace :admin do
   #   # root to: 'categories#show'
   #
