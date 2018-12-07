@@ -34,6 +34,14 @@
             <% end %>
             <hr/>
           </div>
+
+          <%= form_for :review do |f| %>
+          <div class="form-group">
+            Description: <%= f.text_area :name %>
+            Rating: <%= f.select :description, ['1', '2', '3', '4', '5'] %>
+            <%= f.submit "Submit" %>
+            <% end %>
+          </div>
         </dl>
       </div>
     </div>
