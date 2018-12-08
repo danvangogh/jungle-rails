@@ -13,6 +13,14 @@ before_filter :authorize
     else
       redirect_to '/'
     end
+
+    def destroy
+      @product = Product.find params[:product_id]
+      @review = Review.find params[:id]
+      @review.destroy
+      redirect_to @product, notice: 'Review Deleted'
+    end
+
   end
 
   private

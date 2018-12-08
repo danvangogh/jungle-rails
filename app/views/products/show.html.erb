@@ -32,7 +32,9 @@
             <dd><%= review.rating %><dd>
             <dt>Review</dt>
             <dd><%= review.description %></dd>
-            <% end %>
+
+              <%= button_to "Delete my review", product_review_url(:product_id => review.product.id, :id => review.id), :method => :delete %>
+              <% end %>
             <hr/>
           </div>
         <% if current_user %>
