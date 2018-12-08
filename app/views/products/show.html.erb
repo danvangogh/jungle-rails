@@ -26,21 +26,23 @@
           <dt>Ratings</dt>
           <br/>
           <hr/>
+
           <div class="rating">
-            <dt>Rating: <% @product.reviews.each do |review| %></dt>
+            <dt>Rating: <% @product.reviews.reverse_each do |review| %></dt>
             <dd><%= review.rating %><dd>
             <dt>Review</dt>
             <dd><%= review.description %></dd>
             <% end %>
             <hr/>
           </div>
-
+        <% if current_user %>
           <%= form_for [@product, @review] do |f| %>
 
-          <div class="form-group">
-            Description: <%= f.text_area :description %>
-            Rating: <%= f.select :rating, ['1', '2', '3', '4', '5'] %>
-            <%= f.submit "Submit" %>
+            <div class="form-group">
+              Description: <%= f.text_area :description %>
+              Rating: <%= f.select :rating, ['1', '2', '3', '4', '5'] %>
+              <%= f.submit "Submit" %>
+              <% end %>
             <% end %>
           </div>
         </dl>
