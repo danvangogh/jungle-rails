@@ -2,6 +2,16 @@
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
+[!"The Jungle product catalogue"](https://github.com/danvangogh/jungle-rails/blob/master/docs/main_catalogue.png)
+
+[!"Product page with reviews"](https://github.com/danvangogh/jungle-rails/blob/master/docs/product_with_reviews.png)
+
+[!"Order screen"](https://github.com/danvangogh/jungle-rails/blob/master/docs/place_order.png)
+
+[!"Order confirmation"](https://github.com/danvangogh/jungle-rails/blob/master/docs/order_confirmation.png)
+
+[!"Admin add product categories"](https://github.com/danvangogh/jungle-rails/blob/master/docs/add_categories.png)
+
 
 ## Setup
 
