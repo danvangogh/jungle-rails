@@ -12,11 +12,12 @@ class SessionsController < ApplicationController
       redirect_to :products
     else
       redirect_to '/signup'
-  end
-
-    def destroy
-      session[:user_id] = nil
-      redirect_to [:users, :sessions]
     end
   end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to '/login'
+  end
+
 end
