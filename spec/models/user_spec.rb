@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
   describe 'Validations' do
     before :each do
 
-      @user = User.new(
+      @user = User.create(
         email:                  'a@b.c',
         name:                   'Janet',
         last_name:              'Billings',
@@ -15,15 +15,18 @@ RSpec.describe User, type: :model do
     end
 
     it "is not valid without a name" do
-      expect(@user.name).to_not be_nil
+      @user.name = nil
+      expect(@user).to_not be_valid
     end
 
     it "is not valid without a last name" do
-      expect(@user.last_name).to_not be_nil
+      @user.last_name = nil
+      expect(@user).to_not be_valid
     end
 
     it "is not valid without an email" do
-      expect(@user.email).to_not be_nil
+      @user.email = nil
+      expect(@user).to_not be_valid
     end
 
     it "is not valid with existing email" do
@@ -34,7 +37,7 @@ RSpec.describe User, type: :model do
         password:               'asdfasdf',
         password_confirmation:  'asdfasdf'
       )
-      expect(@user).not_to be_a_new(User)
+      expect(@user).to_not be_valid
     end
 
     it "is valid with a new email" do
@@ -56,7 +59,8 @@ RSpec.describe User, type: :model do
     end
 
     it "is not valid without a password" do
-      expect(@user.password).to_not be_nil
+      @user.password = nil
+      expect(@user).to_not be_valid
     end
 
     it "is not valid without password matching" do
@@ -69,20 +73,19 @@ RSpec.describe User, type: :model do
     end
 
     it "is long enough password" do
-      expect(@user.password.length).to be >=8
+      expect(@user).to be_valid
     end
 
     it "is long enough password" do
-      @user.password = 'as'
-      expect(@user.password.length).to_not be >=8
+      @user.password = 'a'
+      expect(@user).to_not be_valid
     end
-
   end
 
   describe '.authenticate_with_credentials' do
     before :each do
 
-      @user = User.new(
+      @user = User.create(
         email:                  'a@b.c',
         name:                   'Janet',
         last_name:              'Billings',
@@ -92,11 +95,15 @@ RSpec.describe User, type: :model do
     end
 
     it "is not valid without an email" do
-      expect(@user.email).to_not be_nil
+      expect(User.authenticate_with_credentials('', 'asdfasdf')).to be_nil
     end
 
     it "is not valid without a password" do
-      expect(@user.password).to_not be_nil
+      expect(User.authenticate_with_credentials('a@b.c', '')).to be_nil
+    end
+
+    it "is is valid with username and password" do
+      expect(User.authenticate_with_credentials('a@b.c', 'asdfasdf')).to eq @user
     end
 
   end
